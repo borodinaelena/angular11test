@@ -1,1 +1,27 @@
-hello world
+<div class="container mt-5">
+    <h1> Clients</h1>
+    <mat-accordion>
+        <mat-expansion-panel *ngFor="let clientItem of clients" (opened)="getClient(clientItem.id)">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    {{clientItem.name}}
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div *ngIf="client" class="d-flex flex-column">
+                <mat-form-field>
+                    <mat-label>Name</mat-label>
+                    <input matInput placeholder="Name" [(ngModel)]="client.name">
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Service</mat-label>
+                    <mat-select [(ngModel)]="client.services" multiple [compareWith]="compareFn">
+                      <mat-option *ngFor="let serviceItem of services" [value]="serviceItem.id">
+                        {{serviceItem.name}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                  <button mat-raised-button color="primary" (click)="save()">Save</button>
+            </div>
+        </mat-expansion-panel>
+    </mat-accordion>
+</div>
