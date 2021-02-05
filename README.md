@@ -1,4 +1,4 @@
 # For start
-npm i
+`npm i`
 
 `ng serve` or `npm run start`
